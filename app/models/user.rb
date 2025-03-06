@@ -26,4 +26,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  #Direct Associations
+  has_many  :wardrobes, class_name: "Wardrobe", foreign_key: "user_id", dependent: :destroy
+  has_many  :favorites, class_name: "Favorite", foreign_key: "user_id", dependent: :destroy
+  has_many  :outfits, class_name: "Outfit", foreign_key: "user_id", dependent: :destroy
+  has_many  :clothes, class_name: "Clothing", foreign_key: "user_id", dependent: :destroy
 end

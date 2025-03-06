@@ -9,4 +9,9 @@
 #  updated_at          :datetime         not null
 #
 class Tag < ApplicationRecord
+  #Direct Associations
+  has_many  :clothing_tags, class_name: "ClothingTag", foreign_key: "tag_id", dependent: :destroy
+
+  #Indirect Associations
+  has_many :clothes, through: :clothing_tags, source: :clothes
 end
