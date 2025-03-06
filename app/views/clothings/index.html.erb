@@ -1,0 +1,214 @@
+<div>
+  <div>
+    <h1>
+      List of all clothings
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new clothing
+    </h2>
+
+    <form action="/insert_clothing" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category">
+      </div>
+
+      <div>
+        <label for="color_box">
+          Color
+        </label>
+
+        <input type="text" id="color_box" name="query_color">
+      </div>
+
+      <div>
+        <label for="material_box">
+          Material
+        </label>
+
+        <input type="text" id="material_box" name="query_material">
+      </div>
+
+      <div>
+        <label for="season_box">
+          Season
+        </label>
+
+        <input type="text" id="season_box" name="query_season">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="brand_box">
+          Brand
+        </label>
+
+        <input type="text" id="brand_box" name="query_brand">
+      </div>
+
+      <div>
+        <label for="size_box">
+          Size
+        </label>
+
+        <input type="text" id="size_box" name="query_size">
+      </div>
+
+      <div>
+        <label for="outfit_items_count_box">
+          Outfit items count
+        </label>
+
+        <input type="text" id="outfit_items_count_box" name="query_outfit_items_count">
+      </div>
+
+      <button>
+        Create clothing
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Category
+        </th>
+
+        <th>
+          Color
+        </th>
+
+        <th>
+          Material
+        </th>
+
+        <th>
+          Season
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Brand
+        </th>
+
+        <th>
+          Size
+        </th>
+
+        <th>
+          Outfit items count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_clothings.each do |a_clothing| %>
+      <tr>
+        <td>
+          <%= a_clothing.id %>
+        </td>
+
+        <td>
+          <%= a_clothing.user_id %>
+        </td>
+
+        <td>
+          <%= a_clothing.category %>
+        </td>
+
+        <td>
+          <%= a_clothing.color %>
+        </td>
+
+        <td>
+          <%= a_clothing.material %>
+        </td>
+
+        <td>
+          <%= a_clothing.season %>
+        </td>
+
+        <td>
+          <%= a_clothing.image %>
+        </td>
+
+        <td>
+          <%= a_clothing.brand %>
+        </td>
+
+        <td>
+          <%= a_clothing.size %>
+        </td>
+
+        <td>
+          <%= a_clothing.outfit_items_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_clothing.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_clothing.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/clothings/<%= a_clothing.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

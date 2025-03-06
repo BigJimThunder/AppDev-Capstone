@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Favorite #<%= @the_favorite.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/favorites">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_favorite/<%= @the_favorite.id %>">
+          Delete favorite
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_favorite.user_id %>
+      </dd>
+
+      <dt>
+        Favoritable
+      </dt>
+      <dd>
+        <%= @the_favorite.favoritable_id %>
+      </dd>
+
+      <dt>
+        Favoritable type
+      </dt>
+      <dd>
+        <%= @the_favorite.favoritable_type %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_favorite.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_favorite.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit favorite
+    </h2>
+
+    <form action="/modify_favorite/<%= @the_favorite.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_favorite.user_id %>">
+      </div>
+
+      <div>
+        <label for="favoritable_id_box">
+          Favoritable
+        </label>
+
+        <input type="text" id="favoritable_id_box" name="query_favoritable_id" value="<%= @the_favorite.favoritable_id %>">
+      </div>
+
+      <div>
+        <label for="favoritable_type_box">
+          Favoritable type
+        </label>
+
+        <input type="text" id="favoritable_type_box" name="query_favoritable_type" value="<%= @the_favorite.favoritable_type %>">
+      </div>
+
+      <button>
+        Update favorite
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,191 @@
+<div>
+  <div>
+    <h1>
+      Clothing #<%= @the_clothing.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/clothings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_clothing/<%= @the_clothing.id %>">
+          Delete clothing
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_clothing.user_id %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_clothing.category %>
+      </dd>
+
+      <dt>
+        Color
+      </dt>
+      <dd>
+        <%= @the_clothing.color %>
+      </dd>
+
+      <dt>
+        Material
+      </dt>
+      <dd>
+        <%= @the_clothing.material %>
+      </dd>
+
+      <dt>
+        Season
+      </dt>
+      <dd>
+        <%= @the_clothing.season %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_clothing.image %>
+      </dd>
+
+      <dt>
+        Brand
+      </dt>
+      <dd>
+        <%= @the_clothing.brand %>
+      </dd>
+
+      <dt>
+        Size
+      </dt>
+      <dd>
+        <%= @the_clothing.size %>
+      </dd>
+
+      <dt>
+        Outfit items count
+      </dt>
+      <dd>
+        <%= @the_clothing.outfit_items_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_clothing.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_clothing.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit clothing
+    </h2>
+
+    <form action="/modify_clothing/<%= @the_clothing.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_clothing.user_id %>">
+      </div>
+
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category" value="<%= @the_clothing.category %>">
+      </div>
+
+      <div>
+        <label for="color_box">
+          Color
+        </label>
+
+        <input type="text" id="color_box" name="query_color" value="<%= @the_clothing.color %>">
+      </div>
+
+      <div>
+        <label for="material_box">
+          Material
+        </label>
+
+        <input type="text" id="material_box" name="query_material" value="<%= @the_clothing.material %>">
+      </div>
+
+      <div>
+        <label for="season_box">
+          Season
+        </label>
+
+        <input type="text" id="season_box" name="query_season" value="<%= @the_clothing.season %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_clothing.image %>">
+      </div>
+
+      <div>
+        <label for="brand_box">
+          Brand
+        </label>
+
+        <input type="text" id="brand_box" name="query_brand" value="<%= @the_clothing.brand %>">
+      </div>
+
+      <div>
+        <label for="size_box">
+          Size
+        </label>
+
+        <input type="text" id="size_box" name="query_size" value="<%= @the_clothing.size %>">
+      </div>
+
+      <div>
+        <label for="outfit_items_count_box">
+          Outfit items count
+        </label>
+
+        <input type="text" id="outfit_items_count_box" name="query_outfit_items_count" value="<%= @the_clothing.outfit_items_count %>">
+      </div>
+
+      <button>
+        Update clothing
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

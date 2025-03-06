@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Wardrobe #<%= @the_wardrobe.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/wardrobes">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_wardrobe/<%= @the_wardrobe.id %>">
+          Delete wardrobe
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_wardrobe.user_id %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_wardrobe.name %>
+      </dd>
+
+      <dt>
+        Wardrobe outfits count
+      </dt>
+      <dd>
+        <%= @the_wardrobe.wardrobe_outfits_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_wardrobe.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_wardrobe.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit wardrobe
+    </h2>
+
+    <form action="/modify_wardrobe/<%= @the_wardrobe.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_wardrobe.user_id %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_wardrobe.name %>">
+      </div>
+
+      <div>
+        <label for="wardrobe_outfits_count_box">
+          Wardrobe outfits count
+        </label>
+
+        <input type="text" id="wardrobe_outfits_count_box" name="query_wardrobe_outfits_count" value="<%= @the_wardrobe.wardrobe_outfits_count %>">
+      </div>
+
+      <button>
+        Update wardrobe
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all clothing tags
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new clothing tag
+    </h2>
+
+    <form action="/insert_clothing_tag" method="post">
+      <div>
+        <label for="clothing_id_box">
+          Clothing
+        </label>
+
+        <input type="text" id="clothing_id_box" name="query_clothing_id">
+      </div>
+
+      <div>
+        <label for="tag_id_box">
+          Tag
+        </label>
+
+        <input type="text" id="tag_id_box" name="query_tag_id">
+      </div>
+
+      <button>
+        Create clothing tag
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Clothing
+        </th>
+
+        <th>
+          Tag
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_clothing_tags.each do |a_clothing_tag| %>
+      <tr>
+        <td>
+          <%= a_clothing_tag.id %>
+        </td>
+
+        <td>
+          <%= a_clothing_tag.clothing_id %>
+        </td>
+
+        <td>
+          <%= a_clothing_tag.tag_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_clothing_tag.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_clothing_tag.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/clothing_tags/<%= a_clothing_tag.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
