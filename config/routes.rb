@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/home'
   # Routes for the Wardrobe outfit resource:
 
   # CREATE
@@ -156,5 +157,14 @@ Rails.application.routes.draw do
 get("/", { :controller => "pages", :action => "home" })
 post("/waitlist", { :controller => "pages", :action => "waitlist" })
 get("/signin", { :controller => "pages", :action => "signin" })
+
+  authenticated :user do
+    get("/users/home", { :controller => "users", :action => "home" })
+    root({ :controller => "users", :action => "home" })
+  end
+
+  unauthenticated do
+    root({ :controller => "pages", :action => "home" })
+  end
   
 end

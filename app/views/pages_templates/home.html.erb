@@ -14,5 +14,12 @@
     <button type="submit">Join the Waitlist</button>
   </form>
 
-  <p>Have a beta login? <a href="/signin">Sign in here.</a></p>
+  <p>Have a beta login? <a href="<%= new_session_path(:user) %>">Sign in here.</a></p>
 </div>
+
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.name || current_user.email %>!</p>
+  <p><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "logout-btn" %></p>
+<% else %>
+  <p><%= link_to "Sign In", new_user_session_path, class: "signin-btn" %></p>
+<% end %>

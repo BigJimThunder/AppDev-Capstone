@@ -56,3 +56,24 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.logout-btn, .signin-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #ff4b4b;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background: #d63030;
+}
+
+.signin-btn {
+  background: #007bff;
+}
+
+.signin-btn:hover {
+  background: #0056b3;
+}
