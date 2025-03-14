@@ -178,7 +178,7 @@
         </td>
 
         <td>
-          <%= a_clothing.image %>
+          <%= image_tag a_clothing.image, alt: "Clothing image", style: "max-width: 200px; height: auto; border-radius: 6px;" if a_clothing.image.present? %>
         </td>
 
         <td>

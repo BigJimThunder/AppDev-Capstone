@@ -1,0 +1,13 @@
+<nav style="background: #f9fafb; padding: 12px 20px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <%= link_to "👋 Home", "/users/home", style: "margin-right: 15px;" %>
+    <%= link_to "🧥 Closet", "/clothings", style: "margin-right: 15px;" %>
+    <%= link_to "🧢 Outfits", "/outfits", style: "margin-right: 15px;" %>
+    <%= link_to "⭐ Favorites", "/favorites", style: "margin-right: 15px;" %>
+    <%= link_to "✏️ Edit Profile", edit_user_registration_path, style: "margin-right: 15px;" %>
+  </div>
+
+  <div>
+    <%= button_to "🚪 Sign Out", destroy_user_session_path, method: :delete, form: { style: "display:inline;" }, style: "background: none; border: none; color: #d00; cursor: pointer;" %>
+  </div>
+</nav>

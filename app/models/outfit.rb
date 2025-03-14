@@ -16,6 +16,6 @@ class Outfit < ApplicationRecord
   has_many  :wardrobe_outfits, class_name: "WardrobeOutfit", foreign_key: "outfit_id", dependent: :destroy
 
   #Indirect Associations
-  has_many :clothes, through: :outfit_items, source: :clothes
+  has_many :clothes, through: :outfit_items, source: :clothing
   has_many :wardrobes, through: :wardrobe_outfits, source: :wardrobes
 end

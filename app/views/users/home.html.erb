@@ -1,4 +1,41 @@
-<h1>Users#home</h1>
-<p>Find me in app/views/users/home.html.erb</p>
-<p><%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %></p>
+<div class="dashboard-container">
+  <h1>Welcome back, <%= current_user.name || current_user.email %> 👋</h1>
 
+  <div class="quick-actions">
+    <%= link_to "➕ Add Clothing", "/clothings/new", class: "btn" %>
+    <%= link_to "👗 View Closet", clothings_path, class: "btn" %>
+    <%= link_to "📦 Favorites", favorites_path, class: "btn" %>
+    <%= link_to "✏️ Edit Profile", edit_user_registration_path, class: "btn" %>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <h2><%= current_user.clothes_count || 0 %></h2>
+      <p>Clothing Items</p>
+    </div>
+
+    <div class="stat-box">
+      <h2><%= current_user.outfits_count || 0 %></h2>
+      <p>Outfits</p>
+    </div>
+
+    <div class="stat-box">
+      <h2><%= current_user.favorites_count || 0 %></h2>
+      <p>Favorites</p>
+    </div>
+  </div>
+
+  <% if current_user.clothes.any? %>
+    <div class="preview">
+      <h3>Your Recent Items</h3>
+      <ul class="clothing-preview">
+        <% current_user.clothes.order(created_at: :desc).limit(3).each do |item| %>
+          <li>
+            <%= image_tag item.image, class: "thumbnail" if item.image.present? %>
+            <p><%= item.category %> — <%= item.color %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

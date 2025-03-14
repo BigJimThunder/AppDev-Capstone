@@ -58,7 +58,7 @@
         Image
       </dt>
       <dd>
-        <%= @the_clothing.image %>
+        <%= image_tag @the_clothing.image, alt: "Clothing image", style: "max-width: 200px; height: auto; border-radius: 6px;" if @the_clothing.image.present? %>
       </dd>
 
       <dt>

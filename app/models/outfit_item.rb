@@ -11,6 +11,6 @@
 #
 class OutfitItem < ApplicationRecord
   #Direct Associations
-  belongs_to :clothes, required: true, class_name: "Clothing", foreign_key: "clothing_id", counter_cache: true
+  belongs_to :clothing, required: true, class_name: "Clothing", foreign_key: "clothing_id", counter_cache: true
   belongs_to :outfit, required: true, class_name: "Outfit", foreign_key: "outfit_id"
 end
