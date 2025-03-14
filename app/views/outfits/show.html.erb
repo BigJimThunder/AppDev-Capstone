@@ -17,6 +17,12 @@
     <dd><%= time_ago_in_words(@the_outfit.updated_at) %> ago</dd>
   </dl>
 
+  <%= button_to "Add to Favorites", "/insert_favorite", method: :post, params: {
+  query_user_id: current_user.id,
+  query_favoritable_type: "Outfit",
+  query_favoritable_id: @the_outfit.id
+}, class: "favorite-btn" %>
+
   <hr style="margin: 30px 0;">
 
   <h2>👕 Clothing Items in this Outfit</h2>
@@ -45,25 +51,40 @@
 
   <hr style="margin: 40px 0;">
 
-  <h2>Edit Outfit</h2>
+<h2>Edit Outfit</h2>
 
-  <form action="/modify_outfit/<%= @the_outfit.id %>" method="post">
-    <div style="margin-bottom: 12px;">
-      <label for="name_box">Name</label><br>
-      <input type="text" id="name_box" name="query_name" value="<%= @the_outfit.name %>" required>
-    </div>
+<form action="/modify_outfit/<%= @the_outfit.id %>" method="post">
+  <div style="margin-bottom: 12px;">
+    <label for="name_box">Name</label><br>
+    <input type="text" id="name_box" name="query_name" value="<%= @the_outfit.name %>" required>
+  </div>
 
-    <div style="margin-bottom: 12px;">
-      <label for="wardrobe_outfits_count_box">Wardrobe outfits count</label><br>
-      <input type="number" id="wardrobe_outfits_count_box" name="query_wardrobe_outfits_count" value="<%= @the_outfit.wardrobe_outfits_count %>" min="0">
-    </div>
+  <div style="margin-bottom: 12px;">
+    <label for="wardrobe_outfits_count_box">Wardrobe outfits count</label><br>
+    <input type="number" id="wardrobe_outfits_count_box" name="query_wardrobe_outfits_count" value="<%= @the_outfit.wardrobe_outfits_count %>" min="0">
+  </div>
 
-    <button style="padding: 6px 12px; background: #4f46e5; color: white; border: none; border-radius: 6px;">
-      Update Outfit
-    </button>
-  </form>
+  <hr>
+
+  <h3>Select clothing to include in this outfit:</h3>
+  <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; background: #f9f9f9;">
+    <% current_user.clothes.each do |item| %>
+      <div style="margin-bottom: 10px;">
+        <label>
+          <%= check_box_tag "query_clothing_ids[]", item.id, @the_outfit.clothes.include?(item) %>
+          <%= item.category %> — <%= item.color %> (<%= item.size %>)
+        </label>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+
+  <button style="padding: 6px 12px; background: #4f46e5; color: white; border: none; border-radius: 6px;">
+    Update Outfit
+  </button>
+</form>
 </div>
 <% @the_outfit.clothes.each do |item| %>
   <%= image_tag item.image if item.image.present? %>
 <% end %>
-

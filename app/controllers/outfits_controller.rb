@@ -22,10 +22,17 @@ class OutfitsController < ApplicationController
     the_outfit.user_id = params.fetch("query_user_id")
     the_outfit.name = params.fetch("query_name")
     the_outfit.wardrobe_outfits_count = params.fetch("query_wardrobe_outfits_count")
-
+  
     if the_outfit.valid?
       the_outfit.save
-      redirect_to("/outfits", { :notice => "Outfit created successfully." })
+  
+      selected_clothing_ids = params[:query_clothing_ids] || []
+  
+      selected_clothing_ids.each do |clothing_id|
+        OutfitItem.create(outfit_id: the_outfit.id, clothing_id: clothing_id)
+      end
+  
+      redirect_to("/outfits", { :notice => "Outfit created with #{selected_clothing_ids.count} items." })
     else
       redirect_to("/outfits", { :alert => the_outfit.errors.full_messages.to_sentence })
     end

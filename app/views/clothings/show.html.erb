@@ -17,7 +17,11 @@
         </a>
       </div>
     </div>
-
+        <%= button_to "Add to Favorites", "/insert_favorite", method: :post, params: {
+      query_user_id: current_user.id,
+      query_favoritable_type: "Clothing",
+      query_favoritable_id: @the_clothing.id
+    }, class: "favorite-btn" %>
     <dl>
       <dt>
         User
@@ -100,6 +104,22 @@
 </div>
 
 <hr>
+<div>
+  <h2>🧢 This Piece Is In These Outfits:</h2>
+
+  <% if @the_clothing.outfits.any? %>
+    <ul>
+      <% @the_clothing.outfits.each do |outfit| %>
+        <li>
+          <%= link_to outfit.name, "/outfits/#{outfit.id}", style: "color: #4f46e5;" %>
+          (<%= time_ago_in_words(outfit.updated_at) %> ago)
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>This item hasn’t been added to any outfits yet.</p>
+  <% end %>
+</div>
 
 
 <div>

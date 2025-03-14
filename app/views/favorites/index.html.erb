@@ -1,118 +1,25 @@
-<div>
-  <div>
-    <h1>
-      List of all favorites
-    </h1>
-  </div>
-</div>
+<div style="max-width: 800px; margin: 0 auto;">
+  <h1>⭐️ Your Favorites</h1>
 
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new favorite
-    </h2>
-
-    <form action="/insert_favorite" method="post">
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
+  <% if current_user.favorites.any? %>
+    <h2 style="margin-top: 24px;">🧥 Favorite Clothing</h2>
+    <% current_user.favorite_clothings.each do |item| %>
+      <div style="margin-bottom: 16px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+        <%= image_tag item.image, style: "max-width: 100px;" if item.image.present? %>
+        <p><strong><%= item.category %></strong> — <%= item.color %> (<%= item.size %>)</p>
+        <p><%= link_to "View", "/clothings/#{item.id}" %></p>
       </div>
+    <% end %>
 
-      <div>
-        <label for="favoritable_id_box">
-          Favoritable
-        </label>
-
-        <input type="text" id="favoritable_id_box" name="query_favoritable_id">
+    <h2 style="margin-top: 32px;">🧢 Favorite Outfits</h2>
+    <% current_user.favorite_outfits.each do |fit| %>
+      <div style="margin-bottom: 16px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
+        <p><strong><%= fit.name %></strong></p>
+        <p><%= pluralize(fit.clothes.count, "item") %></p>
+        <p><%= link_to "View", "/outfits/#{fit.id}" %></p>
       </div>
-
-      <div>
-        <label for="favoritable_type_box">
-          Favoritable type
-        </label>
-
-        <input type="text" id="favoritable_type_box" name="query_favoritable_type">
-      </div>
-
-      <button>
-        Create favorite
-      </button>
-    </form>
-  </div>
+    <% end %>
+  <% else %>
+    <p>You haven't favorited anything yet!</p>
+  <% end %>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Favoritable
-        </th>
-
-        <th>
-          Favoritable type
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_favorites.each do |a_favorite| %>
-      <tr>
-        <td>
-          <%= a_favorite.id %>
-        </td>
-
-        <td>
-          <%= a_favorite.user_id %>
-        </td>
-
-        <td>
-          <%= a_favorite.favoritable_id %>
-        </td>
-
-        <td>
-          <%= a_favorite.favoritable_type %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_favorite.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_favorite.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/favorites/<%= a_favorite.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

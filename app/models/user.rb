@@ -32,4 +32,7 @@ class User < ApplicationRecord
   has_many  :favorites, class_name: "Favorite", foreign_key: "user_id", dependent: :destroy
   has_many  :outfits, class_name: "Outfit", foreign_key: "user_id", dependent: :destroy
   has_many  :clothes, class_name: "Clothing", foreign_key: "user_id", dependent: :destroy
+
+  has_many :favorite_clothings, through: :favorites, source: :favoritable, source_type: "Clothing"
+  has_many :favorite_outfits, through: :favorites, source: :favoritable, source_type: "Outfit"
 end

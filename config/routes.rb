@@ -154,13 +154,12 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-get("/", { :controller => "pages", :action => "home" })
 post("/waitlist", { :controller => "pages", :action => "waitlist" })
 get("/signin", { :controller => "pages", :action => "signin" })
 
   authenticated :user do
     get("/users/home", { :controller => "users", :action => "home" })
-    root({ :controller => "users", :action => "home" })
+    root({ :controller => "users", :action => "home", as: :authenticated_root})
   end
 
   unauthenticated do
